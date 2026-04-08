@@ -45,6 +45,7 @@ export default function RulesAndRegulations() {
                 The rules and regulations for both hosts and contestants will be published here. Check back soon for the official guidelines.
               </p>
               <div className="pt-4">
+                
                 <a
                   href="/"
                   className="inline-flex items-center gap-2 rounded-full border border-red-800/40 bg-red-950/30 px-6 py-2.5 text-sm font-semibold uppercase tracking-[0.18em] text-red-200 transition hover:border-red-600/60 hover:bg-red-900/40"
