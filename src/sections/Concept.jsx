@@ -4,22 +4,27 @@ const cardData = [
   {
     title: 'Real Players',
     description: 'Bold contestants who enter the game with open hearts and strategic intent. They move like queens, knights, and bishops across the board of romance.',
-    accent: 'bg-gradient-to-br from-red-500 to-rose-500',
-    icon: '♟️'
+    icon: '♟️',
+    label: 'Open play',
+    tag: 'The Brave',
   },
   {
     title: 'Checks',
     description: 'Hidden antagonists who challenge the couples and create tension with unexpected moves. They are the wildcards in the love match.',
-    accent: 'bg-gradient-to-br from-slate-700 to-black',
-    icon: '♛'
+    icon: '♛',
+    label: 'Hidden danger',
+    tag: 'The Shadow',
   }
 ]
 
 export default function Concept() {
   return (
-    <section id="concept" className="relative overflow-hidden rounded-[36px] border border-white/10 bg-slate-950/90 px-6 py-10 text-white shadow-[0_40px_120px_rgba(0,0,0,0.45)] backdrop-blur-xl sm:px-10 lg:px-12">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(244,63,94,0.18),_transparent_22%),radial-gradient(circle_at_bottom_right,_rgba(255,255,255,0.06),_transparent_35%)]" />
+    <section id="concept" className="relative overflow-hidden rounded-[36px] border border-red-900/30 bg-[#1A0A0A] px-6 py-10 shadow-[0_40px_120px_rgba(139,0,0,0.3)] sm:px-10 lg:px-12">
+      {/* Background glow */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(200,16,46,0.15),_transparent_40%),radial-gradient(circle_at_bottom_right,_rgba(139,0,0,0.1),_transparent_50%)]" />
+
       <div className="relative grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+        {/* Left text */}
         <motion.div
           initial={{ opacity: 0, x: -24 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -27,45 +32,69 @@ export default function Concept() {
           transition={{ duration: 0.85, ease: 'easeOut' }}
           className="space-y-6"
         >
-          <p className="text-sm uppercase tracking-[0.3em] text-rose-300">Concept</p>
-          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+          <p className="text-sm uppercase tracking-[0.3em] text-red-400">Concept</p>
+          <h2 className="font-['Playfair_Display'] text-3xl font-bold tracking-tight text-white sm:text-4xl">
             The dating game is played like a chessboard.
           </h2>
-          <p className="max-w-2xl text-base leading-8 text-slate-300 sm:text-lg">
-            Every move is a statement. Contestants are cast as chess pieces, some revealing their true intentions, while others lurk in the shadows as hidden Checks — antagonists who disrupt the romance and test emotional intelligence.
+          <p className="max-w-2xl text-base leading-8 text-red-100/60 sm:text-lg">
+            Every move is a statement. Contestants are cast as chess pieces — some revealing their true intentions, while others lurk in the shadows as hidden Checks.
           </p>
+
+          {/* Decorative chess divider */}
+          <div className="flex items-center gap-3 pt-2">
+            <div className="h-px flex-1 bg-gradient-to-r from-red-700/0 via-red-600/50 to-red-700/0" />
+            <span className="text-red-500 text-xl">♜</span>
+            <div className="h-px flex-1 bg-gradient-to-r from-red-700/0 via-red-600/50 to-red-700/0" />
+          </div>
         </motion.div>
 
+        {/* Right cards */}
         <motion.div
           initial={{ opacity: 0, x: 24 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.85, ease: 'easeOut' }}
-          className="grid gap-6"
+          className="grid gap-5"
         >
-          {cardData.map((card) => (
-            <div
+          {cardData.map((card, i) => (
+            <motion.div
               key={card.title}
-              className="group relative overflow-hidden rounded-[32px] border border-white/10 bg-slate-900/80 p-6 shadow-[0_30px_60px_rgba(0,0,0,0.35)] transition hover:-translate-y-1 hover:border-rose-400/40 hover:bg-slate-900/95"
+              whileHover={{ y: -4, scale: 1.01 }}
+              transition={{ duration: 0.2 }}
+              className="group relative overflow-hidden rounded-2xl border border-red-900/40 bg-gradient-to-br from-[#2A0A0A] to-[#1A0A0A] p-6"
+              style={{ boxShadow: '0 8px 32px rgba(139,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.05)' }}
             >
-              <div className={`absolute -left-10 top-8 h-32 w-32 rounded-full blur-3xl opacity-60 ${card.accent}`} />
-              <div className="relative flex items-center gap-4">
-                <div className={`flex h-14 w-14 items-center justify-center rounded-2xl ${card.accent} text-2xl shadow-lg shadow-black/30`}>
+              {/* Corner accent */}
+              <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-bl from-red-700/20 to-transparent rounded-bl-[40px]" />
+
+              {/* Left red border accent */}
+              <div className="absolute left-0 top-4 bottom-4 w-[3px] bg-gradient-to-b from-red-500 via-red-600 to-red-500/0 rounded-full" />
+
+              <div className="flex items-start gap-4 pl-4">
+                {/* Icon tile */}
+                <div className="flex-shrink-0 flex h-14 w-14 items-center justify-center rounded-xl bg-red-950 border border-red-800/50 text-2xl shadow-inner">
                   {card.icon}
                 </div>
-                <div>
-                  <p className="text-xs uppercase tracking-[0.3em] text-rose-200/80">{card.title}</p>
-                  <h3 className="mt-3 text-2xl font-semibold text-white">{card.title}</h3>
+
+                <div className="flex-1 min-w-0">
+                  {/* Tag pill */}
+                  <span className="inline-block mb-2 rounded-full bg-red-900/40 border border-red-700/30 px-2.5 py-0.5 text-[10px] uppercase tracking-[0.25em] text-red-300">
+                    {card.tag}
+                  </span>
+                  <h3 className="text-xl font-semibold text-white">{card.title}</h3>
                 </div>
               </div>
-              <p className="mt-6 text-sm leading-7 text-slate-300 transition group-hover:text-white">
+
+              <p className="mt-4 pl-4 text-sm leading-7 text-red-100/50 transition-colors group-hover:text-red-100/80">
                 {card.description}
               </p>
-              <div className="mt-8 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.24em] text-rose-300 transition group-hover:text-rose-100">
-                <span className="inline-flex h-2.5 w-2.5 rounded-full bg-rose-300" />
-                {card.title === 'Checks' ? 'Hidden danger' : 'Open play'}
+
+              {/* Bottom label */}
+              <div className="mt-5 pl-4 flex items-center gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-red-500 shadow-[0_0_6px_rgba(200,16,46,0.8)]" />
+                <span className="text-xs uppercase tracking-[0.2em] text-red-400 font-medium">{card.label}</span>
               </div>
-            </div>
+            </motion.div>
           ))}
         </motion.div>
       </div>

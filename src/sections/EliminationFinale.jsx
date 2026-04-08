@@ -5,28 +5,31 @@ const cards = [
     title: 'Elimination',
     description: 'Discover the hidden Check, expose the antagonist, and send them home before they strike again.',
     icon: '⚔️',
-    accent: 'from-purple-500 via-fuchsia-500 to-red-500'
+    label: 'Spot the Check',
+    tag: 'The Reveal',
   },
   {
     title: 'Finale',
     description: 'The last confession lands with full weight — the winner is decided by truth, trust, and a final move.',
     icon: '👑',
-    accent: 'from-blue-500 via-indigo-500 to-violet-500'
+    label: 'Final confession',
+    tag: 'The Crown',
   }
 ]
 
 export default function EliminationFinale() {
   return (
-    <section id="elimination-finale" className="relative overflow-hidden rounded-[36px] border border-white/10 bg-slate-950/90 px-6 py-14 text-white shadow-[0_40px_120px_rgba(0,0,0,0.45)] backdrop-blur-xl sm:px-10 sm:py-20 lg:px-14">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(79,70,229,0.18),_transparent_15%),radial-gradient(circle_at_bottom_right,_rgba(236,72,153,0.14),_transparent_18%)] opacity-80" />
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-950/70 to-slate-950" />
+    <section id="elimination-finale" className="relative overflow-hidden rounded-[36px] border border-red-900/30 bg-[#1A0A0A] px-6 py-14 shadow-[0_40px_120px_rgba(139,0,0,0.25)] sm:px-10 sm:py-20 lg:px-14">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(200,16,46,0.12),_transparent_35%),radial-gradient(circle_at_bottom_right,_rgba(139,0,0,0.1),_transparent_40%)]" />
+
       <div className="relative mx-auto max-w-6xl">
-        <div className="mb-10 text-center">
-          <p className="text-sm uppercase tracking-[0.32em] text-rose-300">Elimination & Finale</p>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight text-white sm:text-4xl">
+        {/* Header */}
+        <div className="mb-12 text-center">
+          <p className="text-sm uppercase tracking-[0.32em] text-red-400">Elimination & Finale</p>
+          <h2 className="mt-4 font-['Playfair_Display'] text-3xl font-bold tracking-tight text-white sm:text-4xl">
             One reveal ends the game — one confession crowns the winner.
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-8 text-slate-300 sm:text-lg">
+          <p className="mx-auto mt-4 max-w-2xl text-base leading-8 text-red-100/60 sm:text-lg">
             Find the Check first, then watch the finale confession decide whose heart and strategy survive the board.
           </p>
         </div>
@@ -39,21 +42,43 @@ export default function EliminationFinale() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.75, delay: index * 0.15, ease: 'easeOut' }}
-              className="group relative overflow-hidden rounded-[32px] border border-white/10 bg-slate-900/80 p-8 text-left shadow-[0_30px_80px_rgba(0,0,0,0.35)] transition hover:-translate-y-1 hover:border-rose-400/40 hover:bg-slate-900/95"
+              whileHover={{ y: -5 }}
+              className="group relative overflow-hidden rounded-2xl border border-red-900/30 bg-[#200A0A] p-8"
+              style={{ boxShadow: '0 8px 40px rgba(139,0,0,0.18), inset 0 1px 0 rgba(255,100,100,0.05)' }}
             >
-              <div className={`absolute -right-10 top-10 h-40 w-40 rounded-full bg-gradient-to-br ${card.accent} opacity-20 blur-3xl`} />
-              <div className="relative z-10 flex items-start gap-4">
-                <div className="flex h-16 w-16 items-center justify-center rounded-3xl bg-gradient-to-br from-white/10 to-white/5 text-3xl shadow-[0_20px_60px_rgba(0,0,0,0.3)]">
-                  {card.icon}
+              {/* Corner gradient */}
+              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-red-900/30 to-transparent rounded-bl-[60px]" />
+
+              {/* Hover top glow line */}
+              <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-red-600/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+              {/* Left accent bar */}
+              <div className="absolute left-0 inset-y-0 w-[3px] bg-gradient-to-b from-red-600/0 via-red-600 to-red-600/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+              <div className="relative z-10">
+                <div className="flex items-center gap-4 mb-6">
+                  {/* Icon */}
+                  <div className="flex-shrink-0 flex h-16 w-16 items-center justify-center rounded-2xl bg-red-950 border border-red-800/40 text-3xl shadow-inner">
+                    {card.icon}
+                  </div>
+                  <div>
+                    {/* Tag pill */}
+                    <span className="inline-block mb-1 rounded-full bg-red-900/40 border border-red-700/30 px-2.5 py-0.5 text-[10px] uppercase tracking-[0.25em] text-red-300">
+                      {card.tag}
+                    </span>
+                    <h3 className="text-2xl font-semibold text-white">{card.title}</h3>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-2xl font-semibold text-white">{card.title}</h3>
-                  <p className="mt-4 text-sm leading-7 text-slate-300">{card.description}</p>
+
+                <p className="text-sm leading-7 text-red-100/50 group-hover:text-red-100/80 transition-colors">
+                  {card.description}
+                </p>
+
+                {/* Bottom label */}
+                <div className="mt-6 flex items-center gap-2">
+                  <span className="h-1 w-4 rounded-full bg-red-600/60 group-hover:w-6 group-hover:bg-red-500 transition-all duration-300" />
+                  <span className="text-xs uppercase tracking-[0.2em] text-red-400 font-medium">{card.label}</span>
                 </div>
-              </div>
-              <div className="mt-6 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.24em] text-rose-300 transition group-hover:text-white">
-                <span className="inline-flex h-2.5 w-2.5 rounded-full bg-rose-300" />
-                {card.title === 'Elimination' ? 'Spot the Check' : 'Final confession'}
               </div>
             </motion.div>
           ))}
